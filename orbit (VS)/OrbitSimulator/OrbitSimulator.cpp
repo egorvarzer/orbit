@@ -161,7 +161,7 @@ vec CalculateAcceleration(
 	vec orientation)
 
 //================================================================
-//aero factor for cube=1, for shere=0.48
+//aero factor for cube=1, for sphere=0.48
 {
 	const double Cx = 1;
 	double currentHeight = position.getScalar(); 
