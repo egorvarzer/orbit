@@ -140,6 +140,7 @@ vec calculateAngularVelocity(vec gravityForce, vec aerodynamicForce,
 	return currentAngularVelocity;
 }
 
+//===============================================================================
 //Calculate aerodynamic heating for spaceship. 
 //Formula: T+(v^2)/2
 double aerodynamicHeating(double temperature, vec speed)
@@ -158,6 +159,9 @@ vec CalculateAcceleration(
 	vec previousSpeed,
 	vec position,
 	vec orientation)
+
+//================================================================
+//aero factor for cube=1, for shere=0.48
 {
 	const double Cx = 1;
 	double currentHeight = position.getScalar(); 
