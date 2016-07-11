@@ -15,49 +15,137 @@ vec calculateGravityForce(vec distance, double shipMass) //G * mEarth * mShip / 
 	vec res = distance.multiplyWithDouble(a);
 	return res; // (N * 10^3)
 }
-
+//так было раньше в коде
+//double temperature(double height) //calculates the temperature at a certain height (K)
+//{
+//	if (height < 0)
+//	{
+//		throw invalid_argument("Height is less than the radius of the Earth");
+//	}
+//	double temperature = ZeroCelsius;
+//	if (height > 145) //at each height there's an equation of temperature calculation
+//	{
+//		return 0.0;
+//	}
+//	else if (height > 94)
+//	{
+//		temperature += 140 * (height - 94) / 51 - 90;
+//	}
+//	else if (height > 84)
+//	{
+//		temperature -= 90;
+//	}
+//	else if (height > 54)
+//	{
+//		temperature += -3 * height + 162;
+//	}
+//	else if (height > 47)
+//	{
+//		return temperature;
+//	}
+//	else if (height > 20)
+//	{
+//		temperature += (20 * height - 940) / 9;
+//	}
+//	else if (height > 10)
+//	{
+//		temperature -= 60;
+//	}
+//	else
+//	{
+//		temperature += -8 * height + 20;
+//	}
+//	return temperature;
+//}
+//
+//========================================================================================================
+// так рассчитывается температура согласно ГОСТ-4401-81
 double temperature(double height) //calculates the temperature at a certain height (K)
 {
 	if (height < 0)
 	{
 		throw invalid_argument("Height is less than the radius of the Earth");
 	}
-	double temperature = ZeroCelsius;
-	if (height > 145) //at each height there's an equation of temperature calculation
+//	double temperature = ZeroCelsius;
+	if (height > 800000) 
 	{
-		return 0.0;
+		temperature = 1000;
 	}
-	else if (height > 94)
+	else if (height > 600000)
 	{
-		temperature += 140 * (height - 94) / 51 - 90;
+		temperature = 999.90+0.0000005*(height-600000);
 	}
-	else if (height > 84)
+	else if (height > 400000)
 	{
-		temperature -= 90;
+		temperature = 995.90+0.00002*(height-400000);
 	}
-	else if (height > 54)
+	else if (height > 325000)
 	{
-		temperature += -3 * height + 162;
+		temperature = 984.65+0.00015*(height-325000);
 	}
-	else if (height > 47)
+	else if (height > 250000)
 	{
-		return temperature;
+		temperature = 941.90+0.000570*(height-250000);
 	}
-	else if (height > 20)
+	else if (height > 200000)
 	{
-		temperature += (20 * height - 940) / 9;
+		temperature = 834.4+0.001750*(height-200000);
 	}
-	else if (height > 10)
+	else if (height > 160000)
 	{
-		temperature -= 60;
+		temperature = 695.60+0.003970*(height-160000);
+	}
+	else if (height > 140000)
+	{
+		temperature = 559.60+0.006800*(height-140000);
+	}
+	else if (height > 120000)
+	{
+		temperature = 334.42+0.011259*(height-120000);
+	}
+//	else if (height > 104128) таблица 5 тут нужно добавить молярную температуру
+//	{
+//		temperature = 203.81
+//	}
+	else if (height > 95411)
+	{
+		temperature = 186.525;
+			}
+	else if (height > 86152)
+	{
+		temperature = 186.65-0.002*(height-86152);
+	}
+	else if (height > 71802)
+	{
+		temperature = 214.65-0.0028*(height-86152);
+	}
+	else if (height > 47350)
+	{
+		temperature = 270.65;
+	}
+	else if (height > 32162)
+	{
+		temperature = 228.65+0.001*(height-32162);
+	}
+	else if (height > 20063)
+	{
+		temperature = 216.65;
+	}
+	else if (height > 11019)
+	{
+		temperature = 216.65;
+	}
+	else if (height > 0)
+	{
+		temperature = 288.15-0.0065*(height-0);
 	}
 	else
 	{
-		temperature += -8 * height + 20;
+		temperature = 288.15;
 	}
 	return temperature;
 }
-
+//=================================================================================================================
 double airDensity(double height) //calculates the air density at a certain height (height = height + EarthRadius)
 {
 	if (height <= EarthRadius) { return SeaLevelAirDensity; }
