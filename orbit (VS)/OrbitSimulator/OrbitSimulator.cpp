@@ -146,6 +146,17 @@ double temperature(double height) //calculates the temperature at a certain heig
 	return temperature;
 }
 //=================================================================================================================
+double MolarMass(double height)
+{
+	if (height < 94000) 
+	{
+		MolarMass = 28.964420*pow(10,-3);
+	}
+else if (height <=97000)
+{
+	MolarMass = (28,82+0.158*(1-7.5*pow(10,-8)*pow(pow((height-94000),2),0.5))))-2.479*pow(10,-4)*pow((97000-height),0.5)))
+}
+}
 double airDensity(double height) //calculates the air density at a certain height (height = height + EarthRadius)
 {
 	if (height <= EarthRadius) { return SeaLevelAirDensity; }
